@@ -1,7 +1,7 @@
 // Online C compiler to run C program online
 #include <stdio.h>
 #include <string.h>
- int r=4,i,j=0,k;
+ int r,i,j=0,k;
  char nomcontact[20];
 
 struct Contact{
@@ -43,19 +43,21 @@ void Ajoutepardefault(struct Contact cont[]){
     strcpy(cont[3].Nom, "Oussama");
     strcpy(cont[3].NumeroTel, "0612345680");
     strcpy(cont[3].Adresse, "Oussama@gmail.com");
-};
+    r=4;
+}
 void AjouterContact(struct Contact cont[]){
    printf("entrer le Nom de contact : ");
    scanf("%s",&cont[r].Nom);
 
-       printf("entrer le Numero de contact : ");
+
+
+    printf("entrer le Numero de contact : ");
    scanf("%s",&cont[r].NumeroTel);
    printf("entrer l'adresse contact : ");
    scanf("%s",&cont[r].Adresse);
    r++;
+
    }
-
-
 void AfficherContact(struct Contact cont[]){
     printf("la liste des contactes est : \n");
     for(i=0;i<r;i++){
