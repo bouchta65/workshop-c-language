@@ -67,7 +67,7 @@ void AfficherContact(struct Contact cont[]){
 }
 void SupprimerContact(struct Contact cont[]){
 
-    printf("Entrer le livre que vous voulez supprimer : ");
+    printf("Entrer le Contact que vous voulez supprimer : ");
     scanf("%s",nomcontact);
     if(RechercheContact(cont,nomcontact)!=0){
         for(i=0;i<r;i++){
@@ -87,7 +87,7 @@ void SupprimerContact(struct Contact cont[]){
 
 }
 void ModifierContact(struct Contact cont[]){
-printf("Entrer le livre que vous voulez rechercher : ");
+printf("Entrer le Contact que vous voulez rechercher : ");
 scanf("%s",nomcontact);
 if(RechercheContact(cont,nomcontact)!=0){
    for(i = 0; i < r; i++) {
