@@ -409,19 +409,29 @@ int ModifierReservation(){
 
 int SupprimerReservation(){
     char ID[20];
+    int choix;
+
     printf("entrer le ID de Reservation :\n");
     scanf("%s",ID);
     for(int i=0;i<nb;i++){
         if(strcmp(Res[i].ID,ID)==0){
+            printf("1.Valider la supression. \n");
+            printf("2.Annuler \n");
+            scanf("%d",&choix);
+            if(choix==1){
             for(int j=i;j<nb-1;j++){
                 Res[j]=Res[j+1];
             }
             nb--;
             printf("la Reservation  a ete bien supprime\n");
             return 1;
+        }else{break;}
+        break;
         }
     }
+
     return 0;
+
 }
 
 void StatistiqueReservation(){
@@ -455,9 +465,9 @@ void StatistiqueReservation(){
                 }
             }
 
-    printf("la moyenne d'âge des patients ayant réservé est :%.2lf \n",Moyenne);
-    printf("le nombre de patients par tranche d'âge : \n 0-->18ans : %d \n 19-->35ans : %d \n +36ans : %d \n",Age18,Age19,Age36);
-    printf("le nombre de patients par tranche d'âge : \n Valide : %d \n reporte : %d \n annule : %d \n traite : %d\n",statutV,statutR,statutA,statutT);
+    printf("la moyenne dage des patients ayant réservé est :%.2lf \n\n",Moyenne);
+    printf("le nombre de patients par tranche dage : \n 0-->18ans : %d \n 19-->35ans : %d \n +36ans : %d \n\n",Age18,Age19,Age36);
+    printf("\n Valide : %d \n reporte : %d \n annule : %d \n traite : %d\n \n\n",statutV,statutR,statutA,statutT);
 }
 int main(){
     int choix;
@@ -470,7 +480,11 @@ int main(){
 
     do{
         printf("%s",menu);
-    scanf("%d",&choix);
+        if (scanf("%d", &choix) != 1) {
+        while (getchar() != '\n');
+        printf("Erreur: Veuillez entrer un nombre valide.\n \n \n");
+        continue;
+    }
     switch(choix){
     case 1:{
         AjouteReservation();
@@ -521,17 +535,23 @@ int main(){
         break;
     }
     case 6:{
-    if(!SupprimerReservation()){
+        int choix3;
+
+        if(!SupprimerReservation()){
         printf("Reservation pas disponible \n\n");
-    }
-    }
-    case 7:{
-    StatistiqueReservation();
     }
 
     break;
+        }
+
+    case 7:{
+    StatistiqueReservation();
+    break;
     }
-    }while(choix!=7);
+    default : break;
+    }
+
+    }while(choix!=8);
 
 
 return 0;
