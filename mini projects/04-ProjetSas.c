@@ -142,7 +142,8 @@ void AjouteReservation(){
     }while(!AgeNombre(Age) || !AgeLetter(Age));
 
 
-    printf("Choisie le statut : \n");
+    do{
+        printf("Choisie le statut : \n");
         printf("1.valide \n");
         printf("2.reporte \n");
         printf("3.annule \n");
@@ -150,13 +151,18 @@ void AjouteReservation(){
         scanf("%d",&ChoixStatut);
         if (ChoixStatut == 1) {
         strcpy(Res[nb].Statut, "valide");
+        break;
     } else if (ChoixStatut == 2) {
         strcpy(Res[nb].Statut, "reporte");
+        break;
     } else if (ChoixStatut == 3) {
         strcpy(Res[nb].Statut, "annule");
+        break;
     } else if (ChoixStatut == 4) {
         strcpy(Res[nb].Statut, "traite");
-    }
+        break;
+    }else{printf("Entrer un nombre Exact \n");}
+    }while(1);
 
 
         struct Datee d;
@@ -283,9 +289,128 @@ int RechercherReservationNom(char Nom[]){
     return 0;
 }
 
-void ModifierReservation(){
+int ModifierReservation(){
+    char ID[20],Nom[20],Prenom[20],Age[20],Telephone[20];
+    int ChoixStatut;
+
     printf("entrer le ID de Reservation :\n");
-    scanf
+    scanf("%s",ID);
+    for(int i=0;i<nb;i++){
+        if(strcmp(Res[i].ID,ID)==0){
+            do{
+    printf("entrer le nom :");
+    scanf("%s",Nom);
+    if(!NomEtPrenom(Nom)){
+       printf("Votre nom contient des nombre \n");
+    }else{
+    strcpy(Res[i].Nom, Nom);
+    }
+    }while(!NomEtPrenom(Nom));
+
+
+    do{
+    printf("entrer le prenom : ");
+    scanf("%s",Prenom);
+
+    if(!NomEtPrenom(Prenom)){
+    printf("Votre nom contient des nombre \n");
+    }else{
+    strcpy(Res[i].Prenom, Prenom);
+    }
+
+    }while(!NomEtPrenom(Prenom));
+
+
+
+    do{
+    printf("entrer le Telephone :");
+    scanf("%s",Telephone);
+    if(!Telletter(Telephone)){
+        printf("Votre Nombre contient des Lettres \n");
+    }else if(!TelNembre(Telephone)){
+        printf("Votre Nombre depace 10 nombres \n");
+    }else if(!TelMaroc(Telephone)){
+        printf("Entrer un nombre exact \n");
+    }else{
+        strcpy(Res[i].Telephone, Telephone);
+    }
+
+    }while(!Telletter(Telephone) || !TelNembre(Telephone) || !TelMaroc(Telephone));
+
+    do{
+    printf("entrer l'age :");
+    scanf("%s",Age);
+    if(!AgeNombre(Age)){
+        printf("Entrer un age entr 0 et 130 \n");
+    }else if(!AgeLetter(Age)){
+        printf("entrer un nombre \n");
+    }else{
+        strcpy(Res[i].Age, Age);
+    }
+    }while(!AgeNombre(Age) || !AgeLetter(Age));
+
+    do{
+        printf("Choisie le statut : \n");
+        printf("1.valide \n");
+        printf("2.reporte \n");
+        printf("3.annule \n");
+        printf("4.traite \n");
+        scanf("%d",&ChoixStatut);
+        if (ChoixStatut == 1) {
+        strcpy(Res[i].Statut, "valide");
+        break;
+    } else if (ChoixStatut == 2) {
+        strcpy(Res[i].Statut, "reporte");
+        break;
+    } else if (ChoixStatut == 3) {
+        strcpy(Res[i].Statut, "annule");
+        break;
+    } else if (ChoixStatut == 4) {
+        strcpy(Res[i].Statut, "traite");
+        break;
+    }else{printf("Entrer un nombre Exact \n");}
+    }while(1);
+
+
+        struct Datee d;
+        do{
+        printf("Entrer la date de reservation  forma accepter : (jour moi annee): ");
+        scanf("%d %d %d", &d.jour,&d.mois,&d.annee);
+        if(!DateValide(d)){
+           printf("entrer une date valide");
+        }else{
+            Res[i].Date = d;
+        }
+        }while(!DateValide(d));
+        return 1;
+        }
+    }
+    return 0;
+}
+
+int SupprimerReservation(){
+    char ID[20];
+    printf("entrer le ID de Reservation :\n");
+    scanf("%s",ID);
+    for(int i=0;i<nb;i++){
+        if(strcmp(Res[i].ID,ID)==0){
+            for(int j=i;j<nb-1;j++){
+                Res[j]=Res[j+1];
+            }
+            nb--;
+            printf("la Reservation  a ete bien supprime\n");
+            return 1;
+        }
+    }
+    return 0;
+}
+
+void StatistiqueReservation(){
+    int AgeEntier,Moyenne=0;
+    for(i=0;i<nb;i++){
+        AgeEntier = atoi(Res[i].Age);
+        Moyenne+=AgeEntier;
+    }
 }
 int main(){
     int choix;
@@ -343,7 +468,18 @@ int main(){
     break;
 }
     case 5:{
-    ModifierReservation();
+        if(!ModifierReservation()){
+            printf("Reservation pas Exist \n");
+        }
+        break;
+    }
+    case 6:{
+    if(!SupprimerReservation()){
+        printf("Reservation pas disponible \n\n");
+    }
+    }
+    case 7:{
+    StatistiqueReservation();
     }
 
     break;
