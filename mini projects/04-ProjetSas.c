@@ -25,13 +25,13 @@ struct Datee Date;
 
 struct Reservation Res[10] = {
     {"RES1000", "Mohammed", "Bouchta", "0612345678", "25", "valide", {5, 10, 2024}},
-    {"RES1001", "Fatima", "Zahra", "0623456789", "30", "reporte", {12, 11, 2024}},
+    {"RES1001", "Fatima", "Zahra", "0623456789", "18", "reporte", {12, 11, 2024}},
     {"RES1002", "Ali", "Hassan", "0634567890", "28", "annule", {15, 10, 2024}},
     {"RES1003", "Oussama", "Hassan", "0645678901", "22", "traite", {18, 11, 2024}},
-    {"RES1004", "Sara", "Ahmed", "0656789012", "35", "valide", {20, 10, 2024}},
+    {"RES1004", "Sara", "Ahmed", "0656789012", "12", "valide", {20, 10, 2024}},
     {"RES1005", "Hassan", "Bouchta", "0667890123", "27", "reporte", {22, 11, 2024}},
     {"RES1006", "Laila", "Jamal", "0678901234", "40", "annule", {25, 10, 2024}},
-    {"RES1007", "Khalid", "Benali", "0689012345", "33", "traite", {28, 11, 2024}},
+    {"RES1007", "Khalid", "Benali", "0689012345", "66", "traite", {28, 11, 2024}},
     {"RES1008", "Nadia", "Elhadi", "0690123456", "29", "valide", {30, 10, 2024}},
     {"RES1009", "Youssef", "Boulahya", "0701234567", "23", "reporte", {1, 11, 2024}}
 };
@@ -170,7 +170,7 @@ void AjouteReservation(){
         printf("Entrer la date de reservation  forma accepter : (jour moi annee): ");
         scanf("%d %d %d", &d.jour,&d.mois,&d.annee);
         if(!DateValide(d)){
-           printf("entrer une date valide");
+           printf("entrer une date valide \n");
         }else{
             Res[nb].Date = d;
         }
@@ -250,12 +250,23 @@ void TriReservations(){
 
     for (int i = 0; i < nb - 1; i++) {
         for (int j = i + 1; j < nb; j++) {
+
+
+            if(strcasecmp(Res[i].Statut,Res[j].Statut)>0){
+                struct Reservation tmp;
+                tmp = Res[i];
+                Res[i] = Res[j];
+                Res[j] = tmp;
+            }
+
+
             if (strcmp(Res[i].Statut, statut) != 0 && strcmp(Res[j].Statut, statut) == 0) {
                 struct Reservation tmp;
                 tmp = Res[i];
                 Res[i] = Res[j];
                 Res[j] = tmp;
-            }}}
+            }} }
+
             AfficherReservations();
     }else if(choix2==3){break;
     }else{printf("entrer soit 1 ou 2 ou 3 \n");}
@@ -406,11 +417,39 @@ int SupprimerReservation(){
 }
 
 void StatistiqueReservation(){
-    int AgeEntier,Moyenne=0;
-    for(i=0;i<nb;i++){
+    int AgeEntier,Age18=0,Age36=0,Age19=0;
+    int statutV=0,statutA=0,statutR=0,statutT=0;
+    double Moyenne=0;
+    for(int i=0;i<nb;i++){
         AgeEntier = atoi(Res[i].Age);
         Moyenne+=AgeEntier;
     }
+    Moyenne = Moyenne/nb;
+    for(int i=0;i<nb;i++){
+        AgeEntier = atoi(Res[i].Age);
+        if(AgeEntier<=18){
+            Age18++;
+        }else if(AgeEntier>18 && AgeEntier<=35){
+            Age19++;
+        }else{
+            Age36++;
+        }
+            }
+            for(int i=0;i<nb;i++){
+                if(strcmp(Res[i].Statut,"valide")==0){
+                    statutV++;
+                }else if(strcmp(Res[i].Statut,"reporte")==0){
+                    statutR++;
+                }else if(strcmp(Res[i].Statut,"annule")==0){
+                    statutA++;
+                }else {
+                    statutT++;
+                }
+            }
+
+    printf("la moyenne d'âge des patients ayant réservé est :%.2lf \n",Moyenne);
+    printf("le nombre de patients par tranche d'âge : \n 0-->18ans : %d \n 19-->35ans : %d \n +36ans : %d \n",Age18,Age19,Age36);
+    printf("le nombre de patients par tranche d'âge : \n Valide : %d \n reporte : %d \n annule : %d \n traite : %d\n",statutV,statutR,statutA,statutT);
 }
 int main(){
     int choix;
