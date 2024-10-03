@@ -90,10 +90,10 @@ void AjouteReservation(){
     int ChoixStatut;
 
     do{
-    printf("entrer le nom :");
+    printf("Entrer le nom :");
     scanf("%s",Nom);
     if(!NomEtPrenom(Nom)){
-       printf("Votre nom contient des nombre \n");
+       printf("votre nom contient des chiffres.\n");
     }else{
     strcpy(Res[nb].Nom, Nom);
     }
@@ -101,11 +101,11 @@ void AjouteReservation(){
 
 
     do{
-    printf("entrer le prenom : ");
+    printf("Entrer le prenom : ");
     scanf("%s",Prenom);
 
     if(!NomEtPrenom(Prenom)){
-    printf("Votre nom contient des nombre \n");
+    printf("votre prenom contient des chiffres.\n");
     }else{
     strcpy(Res[nb].Prenom, Prenom);
     }
@@ -115,14 +115,14 @@ void AjouteReservation(){
 
 
     do{
-    printf("entrer le Telephone :");
+    printf("Entrer le numero de Telephone :");
     scanf("%s",Telephone);
     if(!Telletter(Telephone)){
-        printf("Votre Nombre contient des Lettres \n");
+        printf("le Telephone contient des lettres.\n");
     }else if(!TelNembre(Telephone)){
-        printf("Votre Nombre depace 10 nombres \n");
+        printf("le numero doit avoir exactement 10 chiffres \n");
     }else if(!TelMaroc(Telephone)){
-        printf("Entrer un nombre exact \n");
+        printf("le numero doit commencer par 05, 06, 07, ou 08.\n");
     }else{
         strcpy(Res[nb].Telephone, Telephone);
     }
@@ -130,12 +130,12 @@ void AjouteReservation(){
     }while(!Telletter(Telephone) || !TelNembre(Telephone) || !TelMaroc(Telephone));
 
     do{
-    printf("entrer l'age :");
+    printf("Entrer l'age :");
     scanf("%s",Age);
     if(!AgeNombre(Age)){
-        printf("Entrer un age entr 0 et 130 \n");
+        printf("Entrez un age valide (entre 0 et 130).\n");
     }else if(!AgeLetter(Age)){
-        printf("entrer un nombre \n");
+        printf("l'age doit etre un nombre.\n");
     }else{
         strcpy(Res[nb].Age, Age);
     }
@@ -143,7 +143,7 @@ void AjouteReservation(){
 
 
     do{
-        printf("Choisie le statut : \n");
+        printf("Choisissez le statut : \n");
         printf("1.valide \n");
         printf("2.reporte \n");
         printf("3.annule \n");
@@ -161,7 +161,7 @@ void AjouteReservation(){
     } else if (ChoixStatut == 4) {
         strcpy(Res[nb].Statut, "traite");
         break;
-    }else{printf("Entrer un nombre Exact \n");}
+    }else{printf("choix invalide Reessayez.\n");}
     }while(1);
 
 
@@ -174,7 +174,7 @@ void AjouteReservation(){
             continue;
         }
         if(!DateValide(d)){
-           printf("entrer une date valide \n");
+           printf("Entrer une date valide \n");
         }else{
             Res[nb].Date = d;
         }
@@ -308,15 +308,15 @@ int ModifierReservation(){
     char ID[20],Nom[20],Prenom[20],Age[20],Telephone[20];
     int ChoixStatut;
 
-    printf("entrer le ID de Reservation :\n");
+    printf("Entrer le ID de Reservation :\n");
     scanf("%s",ID);
     for(int i=0;i<nb;i++){
         if(strcmp(Res[i].ID,ID)==0){
             do{
-    printf("entrer le nom :");
+    printf("Entrer le nom :");
     scanf("%s",Nom);
     if(!NomEtPrenom(Nom)){
-       printf("Votre nom contient des nombre \n");
+       printf("votre nom contient des chiffres.\n");
     }else{
     strcpy(Res[i].Nom, Nom);
     }
@@ -324,11 +324,11 @@ int ModifierReservation(){
 
 
     do{
-    printf("entrer le prenom : ");
+    printf("Entrer le prenom : ");
     scanf("%s",Prenom);
 
     if(!NomEtPrenom(Prenom)){
-    printf("Votre nom contient des nombre \n");
+    printf("votre prenom contient des chiffres.\n");
     }else{
     strcpy(Res[i].Prenom, Prenom);
     }
@@ -338,14 +338,14 @@ int ModifierReservation(){
 
 
     do{
-    printf("entrer le Telephone :");
+    printf("entrer Entrez le numero de Telephone :");
     scanf("%s",Telephone);
     if(!Telletter(Telephone)){
-        printf("Votre Nombre contient des Lettres \n");
+        printf("le Telephone contient des lettres.\n");
     }else if(!TelNembre(Telephone)){
-        printf("Votre Nombre depace 10 nombres \n");
+        printf("le numero doit avoir exactement 10 chiffres.\n");
     }else if(!TelMaroc(Telephone)){
-        printf("Entrer un nombre exact \n");
+        printf("le numero doit commencer par 05, 06, 07, ou 08.\n");
     }else{
         strcpy(Res[i].Telephone, Telephone);
     }
@@ -353,19 +353,19 @@ int ModifierReservation(){
     }while(!Telletter(Telephone) || !TelNembre(Telephone) || !TelMaroc(Telephone));
 
     do{
-    printf("entrer l'age :");
+    printf("Entrer l'age :");
     scanf("%s",Age);
     if(!AgeNombre(Age)){
-        printf("Entrer un age entr 0 et 130 \n");
+        printf("Entrer un âge valide (entre 0 et 130).\n");
     }else if(!AgeLetter(Age)){
-        printf("entrer un nombre \n");
+        printf("l'age doit etre un nombre.\n");
     }else{
         strcpy(Res[i].Age, Age);
     }
     }while(!AgeNombre(Age) || !AgeLetter(Age));
 
     do{
-        printf("Choisie le statut : \n");
+        printf("Choisissez le statut : \n");
         printf("1.valide \n");
         printf("2.reporte \n");
         printf("3.annule \n");
@@ -383,7 +383,7 @@ int ModifierReservation(){
     } else if (ChoixStatut == 4) {
         strcpy(Res[i].Statut, "traite");
         break;
-    }else{printf("Entrer un nombre Exact \n");}
+    }else{printf("choix invalide Reessayez.\n");}
     }while(1);
 
 
@@ -396,7 +396,7 @@ int ModifierReservation(){
             continue;
         }
         if(!DateValide(d)){
-           printf("entrer une date valide");
+           printf("Entrer une date valide");
         }else{
             Res[i].Date = d;
         }
@@ -467,7 +467,7 @@ void StatistiqueReservation(){
 
     printf("la moyenne dage des patients ayant réservé est :%.2lf \n\n",Moyenne);
     printf("le nombre de patients par tranche dage : \n 0-->18ans : %d \n 19-->35ans : %d \n +36ans : %d \n\n",Age18,Age19,Age36);
-    printf("\n Valide : %d \n reporte : %d \n annule : %d \n traite : %d\n \n\n",statutV,statutR,statutA,statutT);
+    printf("\n Statuts des reservations : \n - Valide : %d \n - Reportée : %d \n - Annulée : %d \n - Traitées : %d\n\n",statutV,statutR,statutA,statutT);
 }
 int main(){
     int choix;
@@ -476,8 +476,8 @@ int main(){
                 "3.Tri des reservations \n4.Rechercher des reservation. \n"
                 "5.Modifier une reservation. \n"
                 "6.Supprimer une reservation. \n"
-                "7.Statistiques. \n 8.Quitter. \n";
-
+                "7.Statistiques. \n8.Quitter. \n";
+        printf("Gestion des reservations de rendez-vous dentaires \n");
     do{
         printf("%s",menu);
         if (scanf("%d", &choix) != 1) {
