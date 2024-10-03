@@ -168,7 +168,11 @@ void AjouteReservation(){
         struct Datee d;
         do{
         printf("Entrer la date de reservation  forma accepter : (jour moi annee): ");
-        scanf("%d %d %d", &d.jour,&d.mois,&d.annee);
+        if(scanf("%d %d %d", &d.jour, &d.mois, &d.annee) != 3){
+            printf("Erreur: entrer une date valide\n");
+            while (getchar() != '\n');
+            continue;
+        }
         if(!DateValide(d)){
            printf("entrer une date valide \n");
         }else{
@@ -386,7 +390,11 @@ int ModifierReservation(){
         struct Datee d;
         do{
         printf("Entrer la date de reservation  forma accepter : (jour moi annee): ");
-        scanf("%d %d %d", &d.jour,&d.mois,&d.annee);
+        if(scanf("%d %d %d", &d.jour, &d.mois, &d.annee) != 3){
+            printf("Erreur: entrer une date valide\n");
+            while (getchar() != '\n');
+            continue;
+        }
         if(!DateValide(d)){
            printf("entrer une date valide");
         }else{
