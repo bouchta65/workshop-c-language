@@ -473,9 +473,9 @@ void StatistiqueReservation(){
                 }
             }
 
-    printf("la moyenne dage des patients ayant réservé est :%.2lf \n\n",Moyenne);
-    printf("le nombre de patients par tranche dage : \n 0-->18ans : %d \n 19-->35ans : %d \n +36ans : %d \n\n",Age18,Age19,Age36);
-    printf("\n Statuts des reservations : \n - Valide : %d \n - Reportée : %d \n - Annulée : %d \n - Traitées : %d\n\n",statutV,statutR,statutA,statutT);
+    printf("la moyenne d'age des patients ayant reservé est :%.2lf \n\n",Moyenne);
+    printf("le nombre de patients par tranche d'age : \n 0-->18ans : %d \n 19-->35ans : %d \n +36ans : %d \n\n",Age18,Age19,Age36);
+    printf("\n Statuts des reservations : \n - Valide : %d \n - Reportee : %d \n - Annulee : %d \n - Traitees : %d\n\n",statutV,statutR,statutA,statutT);
 }
 int main(){
     int choix;
