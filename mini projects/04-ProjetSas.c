@@ -184,18 +184,26 @@ void AjouteReservation(){
         sprintf(Res[nb].ID, "RES%d", R);
         R++;
         nb++;
+        printf("La reservation a ete ajoutée avec succes \n \n");
 
 }
 void AfficherReservations() {
-    printf("------------------------------------------------------------\n");
-    printf("ID        Nom     Prenom     Telephone  Age  Statut   Date\n");
-    printf("------------------------------------------------------------\n");
+
+    if (nb == 0) {
+        printf("Aucune reservation à afficher.\n");
+        return;
+    }
+
+    printf("\n=========================\n");
+    printf("| Reservations Actuelles |\n");
+    printf("=========================\n");
+    printf("| Ref     | Nom         | Prenom    | Telephone    | Age | Statut   | Date             |\n");
+    printf("==========================================================================\n");
 
     for (int i = 0; i < nb; i++) {
-        char date[20];
+            char date[20];
         sprintf(date, "%02d/%02d/%04d", Res[i].Date.jour, Res[i].Date.mois, Res[i].Date.annee);
-
-        printf("%s  %s  %s  %s  %s  %s  %s\n",
+        printf("| %-5s | %-10s | %-10s | %-12s | %-3d | %-8s | %-12s |\n",
                Res[i].ID,
                Res[i].Nom,
                Res[i].Prenom,
@@ -203,9 +211,8 @@ void AfficherReservations() {
                Res[i].Age,
                Res[i].Statut,
                date);
-    printf("------------------------------------------------------------\n");
     }
-
+    printf("==========================================================================\n");
 }
 void TriReservations(){
     int choix2,choixStatut;
@@ -284,7 +291,7 @@ int RechercherReservationID(char ID[]) {
         if(strcmp(Res[i].ID, ID) == 0) {
             printf("Reservation Disponible: \n");
             sprintf(date, "%02d/%02d/%04d", Res[i].Date.jour, Res[i].Date.mois, Res[i].Date.annee);
-            printf("\n %s | %s | %s | %s | %s | %s   \n",Res[i].ID, Res[i].Nom, Res[i].Prenom, Res[i].Telephone, Res[i].Age, date);
+            printf("\n %s | %s | %s | %s | %s | %s   \n\n",Res[i].ID, Res[i].Nom, Res[i].Prenom, Res[i].Telephone, Res[i].Age, date);
             return 1;
         }
     }
@@ -297,7 +304,7 @@ int RechercherReservationNom(char Nom[]){
         if(strcmp(Res[i].Nom,Nom)==0){
             printf("Reservation Disponible: \n");
             sprintf(date, "%02d/%02d/%04d", Res[i].Date.jour, Res[i].Date.mois, Res[i].Date.annee);
-            printf("\n %s | %s | %s | %s | %s | %s   \n",Res[i].ID, Res[i].Nom, Res[i].Prenom, Res[i].Telephone, Res[i].Age, date);
+            printf("\n %s | %s | %s | %s | %s | %s  \n \n",Res[i].ID, Res[i].Nom, Res[i].Prenom, Res[i].Telephone, Res[i].Age, date);
             return 1;
         }
     }
@@ -401,6 +408,7 @@ int ModifierReservation(){
             Res[i].Date = d;
         }
         }while(!DateValide(d));
+        printf("La reservation a ete modifier avec succes \n \n");
         return 1;
         }
     }
