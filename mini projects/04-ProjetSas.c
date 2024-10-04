@@ -197,7 +197,7 @@ void AfficherReservations() {
     printf("\n=========================\n");
     printf("| Reservations Actuelles |\n");
     printf("=========================\n");
-    printf("| Ref     | Nom         | Prenom    | Telephone    | Age | Statut   | Date             |\n");
+    printf("| Ref     | Nom         | Prenom    | Telephone    | Age     | Statut   | Date         |\n");
     printf("==========================================================================\n");
 
     for (int i = 0; i < nb; i++) {
@@ -220,7 +220,7 @@ void TriReservations(){
     do{
     printf("1:Tri des reservations par Nom. \n");
     printf("2:Tri des reservations par statut. \n");
-    printf("3:return aux Menu \n");
+    printf("3:Menu \n");
     scanf("%d",&choix2);
     if(choix2==1){
        for(int i=0;i<nb;i++){
@@ -512,7 +512,7 @@ int main(){
     do {
         printf("1. recherche par Nom. \n");
         printf("2. recherche par ID. \n");
-        printf("3. Quitter\n");
+        printf("3. Menu\n");
         scanf("%d", &choix3);
         if (choix3 == 1) {
             printf("Entrer le Nom de votre Reservation :\n");
